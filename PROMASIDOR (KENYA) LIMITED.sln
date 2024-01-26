@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33214.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PROMASIDOR (KENYA) LIMITED", "PROMASIDOR (KENYA) LIMITED.csproj", "{0DA72FB1-6FF3-49A0-953E-14DF504E2205}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DA72FB1-6FF3-49A0-953E-14DF504E2205}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DA72FB1-6FF3-49A0-953E-14DF504E2205}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DA72FB1-6FF3-49A0-953E-14DF504E2205}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DA72FB1-6FF3-49A0-953E-14DF504E2205}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4E7C31E-3B4E-47A0-87F1-16ABE136FA04}
+	EndGlobalSection
+EndGlobal
