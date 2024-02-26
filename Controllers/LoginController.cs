@@ -8,10 +8,12 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace PROMASIDOR__KENYA__LIMITED.Controllers
 {
+   
     public class LoginController : Controller
     {
 

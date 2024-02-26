@@ -8,10 +8,13 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http.Cors;
 using System.Web.Mvc;
 
 namespace PROMASIDOR__KENYA__LIMITED.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")] // tune to your needs
+    [RoutePrefix("")]
     public class DeliveryInformationController : Controller
     {
         // GET: Status
