@@ -36,33 +36,40 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             int i = cmd.ExecuteNonQuery();
             con.Close();
 
-            if (dt.Rows.Count > 0)
-            {
-                JObject child = new JObject();
-                foreach (DataColumn col in dt.Columns)
+                if (dt.Rows.Count > 0)
                 {
+                    JArray dataArray = new JArray();
 
-                    child.Add(col.ColumnName, dt.Rows[0][col].ToString());
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        JObject child = new JObject();
+
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            child.Add(col.ColumnName, row[col].ToString());
+                        }
+
+                        dataArray.Add(child);
+                    }
+
+                    response_json.Add("RESPONSECODE", "00");
+                    response_json.Add("RESPONSEMESSAGE", "Success!");
+                    response_json.Add("DATA", dataArray);
                 }
-                //JToken b = JToken.FromObject(dt.Rows[0]);
-                response_json.Add("RESPONSECODE", "00");
-                response_json.Add("RESPONSEMESSAGE", "Success!");
-                response_json.Add("DATA", child);
+                else
+                {
+                    response_json.Add("RESPONSECODE", "01");
+                    response_json.Add("RESPONSEMESSAGE", "Failed to get DeliveryInformation!");
+                }
             }
-            else
+            catch (Exception ex)
             {
                 response_json.Add("RESPONSECODE", "01");
-                response_json.Add("RESPONSEMESSAGE", "Failed to get DeliveryInformation!");
+                response_json.Add("RESPONSEMESSAGE", ex.Message);
             }
-        }
-        catch (Exception ex)
-        {
-            response_json.Add("RESPONSECODE", "01");
-            response_json.Add("RESPONSEMESSAGE", ex.Message);
-        }
 
-        return response_json;
-    }
+            return response_json;
+        }
 
 
         // GET: DeliveryInformation

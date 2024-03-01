@@ -18,51 +18,58 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
     public class StatusController : Controller
     {
         // GET: Status
-      
-            Status emp = new Status();
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["db_conn"].ConnectionString);
-            // GET: Employee
-            public async Task<JObject> Get()
+
+        Status emp = new Status();
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["db_conn"].ConnectionString);
+        // GET: Employee
+        public async Task<JObject> Get()
+        {
+            JObject response_json = new JObject();
+            try
             {
-                JObject response_json = new JObject();
-                try
+                SqlDataAdapter da = new SqlDataAdapter("select * from Status", con);
+                SqlCommand cmd = new SqlCommand("select * from Status", con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                con.Open();
+                int i = cmd.ExecuteNonQuery();
+                con.Close();
+
+                if (dt.Rows.Count > 0)
                 {
-                    SqlDataAdapter da = new SqlDataAdapter("select * from Status", con);
-                    SqlCommand cmd = new SqlCommand("select * from Status", con);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    JArray dataArray = new JArray();
 
-                    con.Open();
-                    int i = cmd.ExecuteNonQuery();
-                    con.Close();
-
-                    if (dt.Rows.Count > 0)
+                    foreach (DataRow row in dt.Rows)
                     {
                         JObject child = new JObject();
+
                         foreach (DataColumn col in dt.Columns)
                         {
-
-                            child.Add(col.ColumnName, dt.Rows[0][col].ToString());
+                            child.Add(col.ColumnName, row[col].ToString());
                         }
-                        //JToken b = JToken.FromObject(dt.Rows[0]);
-                        response_json.Add("RESPONSECODE", "00");
-                        response_json.Add("RESPONSEMESSAGE", "Success!");
-                        response_json.Add("DATA", child);
+
+                        dataArray.Add(child);
                     }
-                    else
-                    {
-                        response_json.Add("RESPONSECODE", "01");
-                        response_json.Add("RESPONSEMESSAGE", "Failed to get Status!");
-                    }
+
+                    response_json.Add("RESPONSECODE", "00");
+                    response_json.Add("RESPONSEMESSAGE", "Success!");
+                    response_json.Add("DATA", dataArray);
                 }
-                catch (Exception ex)
+                else
                 {
                     response_json.Add("RESPONSECODE", "01");
-                    response_json.Add("RESPONSEMESSAGE", ex.Message);
+                    response_json.Add("RESPONSEMESSAGE", "Failed to get Status!");
                 }
-
-                return response_json;
             }
+            catch (Exception ex)
+            {
+                response_json.Add("RESPONSECODE", "01");
+                response_json.Add("RESPONSEMESSAGE", ex.Message);
+            }
+
+            return response_json;
+        }
 
         // GET: Status/Details/5
         public JObject StartGet(int id)

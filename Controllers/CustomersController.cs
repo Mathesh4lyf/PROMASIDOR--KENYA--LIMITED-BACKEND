@@ -36,16 +36,23 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
 
                 if (dt.Rows.Count > 0)
                 {
-                    JObject child = new JObject();
-                    foreach (DataColumn col in dt.Columns)
-                    {
+                    JArray dataArray = new JArray();
 
-                        child.Add(col.ColumnName, dt.Rows[0][col].ToString());
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        JObject child = new JObject();
+
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            child.Add(col.ColumnName, row[col].ToString());
+                        }
+
+                        dataArray.Add(child);
                     }
-                    //JToken b = JToken.FromObject(dt.Rows[0]);
+
                     response_json.Add("RESPONSECODE", "00");
                     response_json.Add("RESPONSEMESSAGE", "Success!");
-                    response_json.Add("DATA", child);
+                    response_json.Add("DATA", dataArray);
                 }
                 else
                 {
@@ -177,7 +184,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     cmd.Parameters.AddWithValue("@Emailaddress", customers.EmailAddress);
                     cmd.Parameters.AddWithValue("@Phonenumber", customers.PhoneNumber);
                     cmd.Parameters.AddWithValue("@location", customers.Location);
-                    
+
 
                     con.Open();
                     int i = cmd.ExecuteNonQuery();

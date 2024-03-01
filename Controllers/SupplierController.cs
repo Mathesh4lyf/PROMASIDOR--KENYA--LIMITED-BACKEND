@@ -36,24 +36,46 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                 int i = cmd.ExecuteNonQuery();
                 con.Close();
 
+
+                //if (dt.Rows.Count > 0)
+                //{
+                //    JObject child = new JObject();
+                //    foreach (DataColumn col in dt.Columns)
+                //    {
+
+                //        child.Add(col.ColumnName, dt.Rows[0][col].ToString());
+                //    }
+                //    JToken b = JToken.FromObject(dt.Rows[0]);
+                //    response_json.Add("RESPONSECODE", "00");
+                //    response_json.Add("RESPONSEMESSAGE", "Success!");
+                //    response_json.Add("DATA", child);
+                //}
                 if (dt.Rows.Count > 0)
                 {
-                    JObject child = new JObject();
-                    foreach (DataColumn col in dt.Columns)
-                    {
+                    JArray dataArray = new JArray();
 
-                        child.Add(col.ColumnName, dt.Rows[0][col].ToString());
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        JObject child = new JObject();
+
+                        foreach (DataColumn col in dt.Columns)
+                        {
+                            child.Add(col.ColumnName, row[col].ToString());
+                        }
+
+                        dataArray.Add(child);
                     }
-                    //JToken b = JToken.FromObject(dt.Rows[0]);
+
                     response_json.Add("RESPONSECODE", "00");
                     response_json.Add("RESPONSEMESSAGE", "Success!");
-                    response_json.Add("DATA", child);
+                    response_json.Add("DATA", dataArray);
                 }
                 else
                 {
                     response_json.Add("RESPONSECODE", "01");
-                    response_json.Add("RESPONSEMESSAGE", "Failed to get Supplier!");
+                    response_json.Add("RESPONSEMESSAGE", "Failed to get suppliers!");
                 }
+
             }
             catch (Exception ex)
             {
@@ -63,6 +85,8 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
 
             return response_json;
         }
+
+
 
         public JObject StartGet(int id)
         {
@@ -96,7 +120,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     response_json.Add("RESPONSECODE", "01");
                     response_json.Add("RESPONSEMESSAGE", "Failed to get supplier!");
                 }
-                
+
             }
             catch (Exception ex)
             {
