@@ -142,18 +142,55 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
 
         // POST: DeliveryInformation/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public async Task<JObject> Post(DeliveryInformation deliveryinformation)
         {
+            JObject response_json = new JObject();
             try
             {
-                // TODO: Add update logic here
+                if (deliveryinformation != null)
+                {
+                    SqlCommand cmd = new SqlCommand("Add_DeliveryInformation", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                return RedirectToAction("Index");
+                    cmd.Parameters.AddWithValue("@customerid", deliveryinformation.CustomerID);
+                    cmd.Parameters.AddWithValue("@customername", deliveryinformation.CustomerName);
+                    cmd.Parameters.AddWithValue("@productname", deliveryinformation.ProductName);
+                    cmd.Parameters.AddWithValue("@quantity", deliveryinformation.Quantity);
+                    cmd.Parameters.AddWithValue("@amountpaid", deliveryinformation.AmountPaid);
+                    cmd.Parameters.AddWithValue("@dateofdelivery", deliveryinformation.DateOfDelivery);
+                    cmd.Parameters.AddWithValue("@deliverername", deliveryinformation.DelivererName);
+                    cmd.Parameters.AddWithValue("@status", deliveryinformation.Status);
+                    cmd.Parameters.AddWithValue("@failedreason", deliveryinformation.FailedReason);
+                    con.Open();
+                    int i = cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    if (i > 0)
+                    {
+                        response_json.Add("RESPONSECODE", "00");
+                        response_json.Add("RESPONSEMESSAGE", "DeliveryInformation Added Successfully!");
+                    }
+                    else
+                    {
+                        response_json.Add("RESPONSECODE", "01");
+                        response_json.Add("RESPONSEMESSAGE", "DeliveryInformation Already Exists or Has Similar Data!");
+                    }
+                }
+
+
+                else
+                {
+                    response_json.Add("RESPONSECODE", "01");
+                    response_json.Add("RESPONSEMESSAGE", "Failed to add!");
+
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                response_json.Add("RESPONSECODE", "01");
+                response_json.Add("RESPONSEMESSAGE", ex.Message);
             }
+            return response_json;
         }
 
         // GET: DeliveryInformation/Delete/5
