@@ -181,7 +181,9 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
 
         // POST: Employee/Edit/5
         // PUT api/Employee/5
-        public async Task<JObject> Put(Employee employee)
+        [HttpPost]
+        public JObject Update(Employee employee)
+        //public async Task<JObject> Put(Employee employee)
         {
             JObject response_json = new JObject();
             try

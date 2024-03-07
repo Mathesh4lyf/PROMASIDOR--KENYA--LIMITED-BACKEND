@@ -173,8 +173,9 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             return response_json;
         }
 
-
-        public async Task<JObject> Put(SupplierInformation supplierinformation)
+        [HttpPost]
+        public JObject Update(SupplierInformation supplierinformation)
+       // public async Task<JObject> Put(SupplierInformation supplierinformation)
         {
             JObject response_json = new JObject();
             try

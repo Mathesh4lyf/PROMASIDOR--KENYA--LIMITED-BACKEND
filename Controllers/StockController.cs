@@ -171,7 +171,9 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
         }
 
         // PUT: api/Stock/5
-        public async Task<JObject> Put(Stock stock)
+        [HttpPost]
+        public JObject Update(Stock stock)
+        //public async Task<JObject> Put(Stock stock)
         {
             JObject response_json = new JObject();
             try

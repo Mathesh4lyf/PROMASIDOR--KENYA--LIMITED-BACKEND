@@ -200,6 +200,64 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             return response_json;
         }
 
+        // PUT: api/DeliveryInformation/5
+        [HttpPost]
+        public JObject Update(DeliveryInformation deliveryinformation)
+        //public async Task<JObject> Put(Supplier supplier)
+        {
+            JObject response_json = new JObject();
+            try
+            {
+                if (deliveryinformation != null)
+                {
+                    SqlCommand cmd = new SqlCommand("Update_DeliveryInformation", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.AddWithValue("@customerid", deliveryinformation.CustomerID);
+                    cmd.Parameters.AddWithValue("@customername", deliveryinformation.CustomerName);
+                    cmd.Parameters.AddWithValue("@productname", deliveryinformation.ProductName);
+                    cmd.Parameters.AddWithValue("@quantity", deliveryinformation.Quantity);
+                    cmd.Parameters.AddWithValue("@amountpaid", deliveryinformation.AmountPaid);
+                    cmd.Parameters.AddWithValue("@dateofdelivery", deliveryinformation.DateOfDelivery);
+                    cmd.Parameters.AddWithValue("@deliverername", deliveryinformation.DelivererName);
+                    cmd.Parameters.AddWithValue("@status", deliveryinformation.Status);
+                    cmd.Parameters.AddWithValue("@failedreason", deliveryinformation.FailedReason);
+
+
+
+                    con.Open();
+                    int i = cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    if (i == 1)
+                    {
+                        response_json.Add("RESPONSECODE", "00");
+                        response_json.Add("RESPONSEMESSAGE", "DeliveryInformation Updated Successfully!");
+                    }
+                    else
+                    {
+                        response_json.Add("RESPONSECODE", "01");
+                        response_json.Add("RESPONSEMESSAGE", "DeliveryInformation Already Exists or Has Similar Data!");
+                    }
+                }
+
+
+                else
+                {
+                    response_json.Add("RESPONSECODE", "01");
+                    response_json.Add("RESPONSEMESSAGE", "Failed to add!");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                response_json.Add("RESPONSECODE", "01");
+                response_json.Add("RESPONSEMESSAGE", ex.Message);
+            }
+            return response_json;
+        }
+
         // GET: DeliveryInformation/Delete/5
         public ActionResult Delete(int id)
         {
@@ -208,18 +266,41 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
 
         // POST: DeliveryInformation/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public async Task<JObject> StartDelete(DeliveryInformation deliveryInformation)
         {
+            JObject response_json = new JObject();
             try
             {
-                // TODO: Add delete logic here
+                if (deliveryInformation != null)
+                {
+                    SqlCommand cmd = new SqlCommand("delete_deliveryInformation", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
 
-                return RedirectToAction("Index");
+
+                    cmd.Parameters.AddWithValue("@customerid", deliveryInformation.CustomerID);
+                    con.Open();
+                    int i = cmd.ExecuteNonQuery();
+                    con.Close();
+
+                    if (i == 1)
+                    {
+                        response_json.Add("RESPONSECODE", "00");
+                        response_json.Add("RESPONSEMESSAGE", "DeliveryInformation deleted!");
+                    }
+                    else
+                    {
+                        response_json.Add("RESPONSECODE", "01");
+                        response_json.Add("RESPONSEMESSAGE", "Failed to delete!");
+
+                    }
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                response_json.Add("RESPONSECODE", "01");
+                response_json.Add("RESPONSEMESSAGE", ex.Message);
             }
+            return response_json;
         }
     }
 }
