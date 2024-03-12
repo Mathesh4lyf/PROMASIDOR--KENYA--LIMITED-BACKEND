@@ -27,8 +27,8 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             JObject response_json = new JObject();
             try
             {
-                SqlDataAdapter da = new SqlDataAdapter("select * from OrderInformation", con);
-                SqlCommand cmd = new SqlCommand("select * from OrderInformation", con);
+                SqlDataAdapter da = new SqlDataAdapter("select * from OrderInformation_new", con);
+                SqlCommand cmd = new SqlCommand("select * from OrderInformation_new", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
@@ -77,8 +77,8 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             JObject response_json = new JObject();
             try
             {
-                SqlDataAdapter da = new SqlDataAdapter("select * from orderinformation where OrderID = '" + id + "'", con);
-                SqlCommand cmd = new SqlCommand("select * from orderinformation where OrderID = '" + id + "'", con);
+                SqlDataAdapter da = new SqlDataAdapter("select * from orderinformation_new where OrderID = '" + id + "'", con);
+                SqlCommand cmd = new SqlCommand("select * from orderinformation_new where OrderID = '" + id + "'", con);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
@@ -130,18 +130,24 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             {
                 if (orderinformation != null)
                 {
-                    SqlCommand cmd = new SqlCommand("Add_OrderInformation", con);
+                    SqlCommand cmd = new SqlCommand("AddOrderInformation", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("@agentid", orderinformation.AgentID);
-                    cmd.Parameters.AddWithValue("@agentname", orderinformation.AgentName);
-                    cmd.Parameters.AddWithValue("@customerid", orderinformation.CustomerID);
-                    cmd.Parameters.AddWithValue("@customername", orderinformation.CustomerName);
-                    cmd.Parameters.AddWithValue("@productid", orderinformation.ProductID);
-                    cmd.Parameters.AddWithValue("@productname", orderinformation.ProductName);
-                    cmd.Parameters.AddWithValue("@quantity", orderinformation.Quantity);
-                    cmd.Parameters.AddWithValue("@amounttobepaid", orderinformation.AmounttobePaid);
-                    cmd.Parameters.AddWithValue("@amountpaid", orderinformation.AmountPaid);
+                    //cmd.Parameters.AddWithValue("@agentid", orderinformation.AgentID);
+                   // cmd.Parameters.AddWithValue("@agentname", orderinformation.AgentName);
+                    //cmd.Parameters.AddWithValue("@customerid", orderinformation.CustomerID);
+                    cmd.Parameters.AddWithValue("@CustomerName", orderinformation.CustomerName);
+                    //cmd.Parameters.AddWithValue("@productid", orderinformation.ProductID);
+                    cmd.Parameters.AddWithValue("@ProductName", orderinformation.ProductName);
+                    cmd.Parameters.AddWithValue("@Quantity", orderinformation.Quantity);
+                    cmd.Parameters.AddWithValue("@AmountToBePaid", orderinformation.AmounttobePaid);
+                    cmd.Parameters.AddWithValue("@AmountPaid", orderinformation.AmountPaid);
+                    cmd.Parameters.AddWithValue("@EmployeeName", orderinformation.EmployeeName);
+                    cmd.Parameters.AddWithValue("@DateOfOrder", orderinformation.DateOfOrder);
+                    cmd.Parameters.AddWithValue("@Status", orderinformation.Status);
+
+
+
                     con.Open();
                     int i = cmd.ExecuteNonQuery();
                     con.Close();
@@ -184,7 +190,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             {
                 if (orderinformation != null)
                 {
-                    SqlCommand cmd = new SqlCommand("Update_OrderInformation", con);
+                    SqlCommand cmd = new SqlCommand("Update_orderinformation", con);
                     cmd.CommandType = CommandType.StoredProcedure;
 
 
@@ -192,6 +198,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     cmd.Parameters.AddWithValue("@Quantity", orderinformation.Quantity);
                     cmd.Parameters.AddWithValue("@AmounttobePaid", orderinformation.AmounttobePaid);
                     cmd.Parameters.AddWithValue("@AmountPaid", orderinformation.AmountPaid);
+                    cmd.Parameters.AddWithValue("@productname", orderinformation.ProductName);
 
 
 
@@ -204,11 +211,11 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                         response_json.Add("RESPONSECODE", "00");
                         response_json.Add("RESPONSEMESSAGE", "OrderInformation Updated Successfully!");
                     }
-                    else
-                    {
-                        response_json.Add("RESPONSECODE", "01");
-                        response_json.Add("RESPONSEMESSAGE", "OrderInformation Already Exists or Has Similar Data!");
-                    }
+                    //else
+                    //{
+                    //    response_json.Add("RESPONSECODE", "01");
+                    //    response_json.Add("RESPONSEMESSAGE", "OrderInformation Already Exists or Has Similar Data!");
+                    //}
                 }
 
 

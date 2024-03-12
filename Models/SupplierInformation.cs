@@ -17,5 +17,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Models
         public string Receivedby { get; set; }
         public string Status{ get; set; }
         public DateTime DateofReceival{ get; set; }
+        public DateTime DateofDelivery { get; set; }
+        public int EmployeeID { get; set; }
     }
 }

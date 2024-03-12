@@ -17,5 +17,8 @@ namespace PROMASIDOR__KENYA__LIMITED.Models
         public string AmounttobePaid { get; set; }
         public string AmountPaid { get; set; }
         public string ProductName { get; set; }
+        public string EmployeeName { get; set; }
+        public string Status { get; set; }
+        public string DateOfOrder { get; set; }
     }
 }
