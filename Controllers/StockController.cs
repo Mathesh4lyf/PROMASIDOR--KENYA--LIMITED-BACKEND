@@ -222,7 +222,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             }
             return response_json;
         }
-
+        [HttpPost]
         public async Task<JObject> Delete(Stock stock)
         {
             JObject response_json = new JObject();

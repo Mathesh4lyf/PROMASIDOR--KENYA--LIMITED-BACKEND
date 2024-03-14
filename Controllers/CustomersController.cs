@@ -219,7 +219,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
             }
             return response_json;
         }
-
+        [HttpPost]
         public async Task<JObject> Delete(Customers customers)
         {
             JObject response_json = new JObject();

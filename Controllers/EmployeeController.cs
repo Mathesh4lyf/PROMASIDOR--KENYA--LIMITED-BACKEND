@@ -236,6 +236,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
         }
 
         // GET: Employee/Delete/5
+        [HttpPost]
         public async Task<JObject> Delete(Employee employee)
         {
             JObject response_json = new JObject();

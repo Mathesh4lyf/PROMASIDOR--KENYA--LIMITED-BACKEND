@@ -217,6 +217,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
 
 
         // POST: Status/Delete/5
+        [HttpPost]
         public async Task<JObject> Delete(Status status)
         {
             JObject response_json = new JObject();

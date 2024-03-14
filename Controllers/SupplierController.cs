@@ -241,8 +241,8 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
 
 
         // POST: Supplier/Delete/5
-
-        public async Task<JObject> StartDelete(Supplier supplier)
+        [HttpPost]
+        public async Task<JObject> Delete(Supplier supplier)
         {
             JObject response_json = new JObject();
             try
