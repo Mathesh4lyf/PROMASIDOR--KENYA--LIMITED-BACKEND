@@ -147,6 +147,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrderInformationController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\OrderInformation.cs" />
     <Compile Include="Models\Products.cs" />
+    <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Stock.cs" />
     <Compile Include="Models\Supplier.cs" />
@@ -212,6 +214,7 @@
     <Folder Include="Views\Login\" />
     <Folder Include="Views\OrderInformation\" />
     <Folder Include="Views\Products\" />
+    <Folder Include="Views\Registration\" />
     <Folder Include="Views\Status\" />
     <Folder Include="Views\Stock\" />
     <Folder Include="Views\SupplierInformation\" />
