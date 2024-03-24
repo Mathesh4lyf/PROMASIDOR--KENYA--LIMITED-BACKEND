@@ -137,8 +137,8 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     cmd.Parameters.AddWithValue("@DateofBirth", employee.DateofBirth);
                     cmd.Parameters.AddWithValue("@emailaddress", employee.Emailaddress);
                     cmd.Parameters.AddWithValue("@phonenumber", employee.PhoneNumber);
-                    cmd.Parameters.AddWithValue("@username", employee.Username);
-                    cmd.Parameters.AddWithValue("@password", employee.Password);
+                    //cmd.Parameters.AddWithValue("@username", employee.Username);
+                   // cmd.Parameters.AddWithValue("@password", employee.Password);
                     cmd.Parameters.AddWithValue("@role", employee.Role);
 
                     con.Open();
@@ -199,8 +199,8 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     cmd.Parameters.AddWithValue("@lastname", employee.Lastname);
                     cmd.Parameters.AddWithValue("@phonenumber", employee.PhoneNumber);
                     cmd.Parameters.AddWithValue("@emailaddress", employee.Emailaddress);
-                    cmd.Parameters.AddWithValue("@username", employee.Username);
-                    cmd.Parameters.AddWithValue("@password", employee.Password);
+                    //cmd.Parameters.AddWithValue("@username", employee.Username);
+                   // cmd.Parameters.AddWithValue("@password", employee.Password);
                     cmd.Parameters.AddWithValue("@role", employee.Role);
                     //cmd.Parameters.AddWithValue("@otp", employee.otp);
                     con.Open();

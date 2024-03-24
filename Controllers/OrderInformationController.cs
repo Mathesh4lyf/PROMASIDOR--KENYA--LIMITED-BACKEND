@@ -199,6 +199,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     cmd.Parameters.AddWithValue("@AmounttobePaid", orderinformation.AmounttobePaid);
                     cmd.Parameters.AddWithValue("@AmountPaid", orderinformation.AmountPaid);
                     cmd.Parameters.AddWithValue("@productname", orderinformation.ProductName);
+                    cmd.Parameters.AddWithValue("@status", orderinformation.Status);
 
 
 

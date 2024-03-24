@@ -11,5 +11,6 @@ namespace PROMASIDOR__KENYA__LIMITED.Models
         public string ProductName { get; set; }
         public string ProductType { get; set; }
         public string ProductDescription { get; set; }
+        public decimal ProductCost{ get; set; }
     }
 }

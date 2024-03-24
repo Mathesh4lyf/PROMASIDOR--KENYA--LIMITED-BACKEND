@@ -134,6 +134,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     cmd.Parameters.AddWithValue("@productname", products.ProductName);
                     cmd.Parameters.AddWithValue("@producttype", products.ProductType);
                     cmd.Parameters.AddWithValue("@productdescription", products.ProductDescription);
+                    cmd.Parameters.AddWithValue("@productcost", products.ProductCost);
                     con.Open();
                     int i = cmd.ExecuteNonQuery();
                     con.Close();
@@ -184,6 +185,7 @@ namespace PROMASIDOR__KENYA__LIMITED.Controllers
                     cmd.Parameters.AddWithValue("@ProductName", products.ProductName);
                     cmd.Parameters.AddWithValue("@ProductType", products.ProductType);
                     cmd.Parameters.AddWithValue("@ProductDescription", products.ProductDescription);
+                    cmd.Parameters.AddWithValue("@productcost", products.ProductCost);
 
 
 
